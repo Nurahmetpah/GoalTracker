@@ -217,10 +217,10 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
 /* ---------- Streak cards ---------- */
 .streaks { display: grid; gap: 10px; grid-template-columns: 1fr; }
 @media (min-width: 640px) { .streaks { grid-template-columns: repeat(3, 1fr); } }
-.streak { position: relative; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--surface); }
+.streak { position: relative; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px 12px 18px; background: var(--surface); }
 .streak::before { content: ""; position: absolute; left: 0; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0; background: var(--c); }
-.streak.warning { border-color: color-mix(in srgb, var(--warn) 65%, transparent); background: var(--warn-bg); }
-.streak.reset { border-color: color-mix(in srgb, var(--crit) 40%, transparent); }
+.streak.st-warning { border-color: color-mix(in srgb, var(--warn) 65%, transparent); background: var(--warn-bg); }
+.streak.st-reset { border-color: color-mix(in srgb, var(--crit) 40%, transparent); }
 .streak-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 .streak-name { font-weight: 600; font-size: 0.92rem; }
 .streak-best { font-size: 0.8rem; color: var(--text-2); }
@@ -681,7 +681,7 @@ function streakSectionHTML() {
       const k = addDays(t, -i), m = dayMin(d.id, k);
       strip += `<i class="${m >= min ? 'q' : m > 0 ? 'p' : ''}${i === 0 ? ' t' : ''}" title="${fmtDay(k)}: ${fmtMin(m)}"></i>`;
     }
-    return `<div class="streak ${s.state}" style="--c:${cv(d)}">
+    return `<div class="streak st-${s.state}" style="--c:${cv(d)}">
       <div class="streak-top"><span class="streak-name">${esc(d.name)}</span><span class="streak-best">Best ${s.longest}</span></div>
       <div class="streak-num num">${s.current}<small>${s.current === 1 ? 'day' : 'days'}</small></div>
       <div class="streak-state">${msg}</div>
